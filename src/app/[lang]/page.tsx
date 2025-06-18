@@ -6,20 +6,17 @@ import CtaSection from '../_components/CtaSection'
 import HeroSection from '../_components/HeroSection'
 import AboutSection from '../_components/AboutSection'
 import ContactSection from '../_components/ContactSection'
-import { useEffect } from 'react'
 import Navbar from '../_components/Navbar'
 import Footer from '../_components/Footer'
 
-interface PageProps {
-  params: { lang: string }
-}
+type Params = Promise<{ lang: string }>
 
-export default async function Home({ params }: PageProps) {
-  const lang = params.lang || 'en' // Access after function begins
+export default async function Home({ params }: { params: Params }) {
+  const { lang } = await params
 
   return (
     <div className="overflow-hidden bg-white">
-      <Navbar lang={lang}/>
+      <Navbar lang={lang} />
       <HeroSection lang={lang} />
       <ServicesSection lang={lang} />
       <AboutSection lang={lang} />
@@ -28,7 +25,7 @@ export default async function Home({ params }: PageProps) {
       <Testimonials lang={lang} />
       <ContactSection lang={lang} />
       <CtaSection lang={lang} />
-      <Footer lang={lang}/>
+      <Footer lang={lang} />
     </div>
   )
 }
