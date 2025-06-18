@@ -7,22 +7,19 @@ import HeroSection from '../_components/HeroSection'
 import AboutSection from '../_components/AboutSection'
 import ContactSection from '../_components/ContactSection'
 import { useEffect } from 'react'
+import Navbar from '../_components/Navbar'
+import Footer from '../_components/Footer'
 
 interface PageProps {
   params: { lang: string }
 }
 
 export default async function Home({ params }: PageProps) {
-  // useEffect(() => {
-  //   const handleParams = async () => {
-  //     const { lang } = await params || 'en'
-  //   }
-  //   handleParams()
-  // }, [])
   const lang = params.lang || 'en' // Access after function begins
 
   return (
-    <main className="overflow-hidden bg-white">
+    <div className="overflow-hidden bg-white">
+      <Navbar lang={lang}/>
       <HeroSection lang={lang} />
       <ServicesSection lang={lang} />
       <AboutSection lang={lang} />
@@ -31,6 +28,7 @@ export default async function Home({ params }: PageProps) {
       <Testimonials lang={lang} />
       <ContactSection lang={lang} />
       <CtaSection lang={lang} />
-    </main>
+      <Footer lang={lang}/>
+    </div>
   )
 }
